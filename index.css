@@ -1,5 +1,4 @@
 .navbar {
-    background-color: lightcoral;
     overflow: hidden;
     position: fixed;
     top: 0;
@@ -24,4 +23,21 @@
 .center {
     display: block;
     text-align: center;
+}
+
+body {
+    background-color: rgba(239, 187, 187, 0.871);
+    }
+
+.column {
+    float: left;
+    width: 20%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+    margin: auto;
 }
