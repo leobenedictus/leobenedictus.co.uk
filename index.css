@@ -1,3 +1,7 @@
+body {
+  background-color: whitesmoke;
+}
+
 .navbar {
     overflow: hidden;
     position: fixed;
@@ -25,10 +29,6 @@
     text-align: center;
 }
 
-body {
-    background-color: rgba(239, 187, 187, 0.871);
-    }
-
 .column {
     float: left;
     width: 20%;
@@ -44,43 +44,48 @@ body {
 
 /* Dropdown Button */
 .dropbtn {
-    background-color: #04AA6D;
-    color: white;
+    color: black;
+    background-color: whitesmoke;
     padding: 16px;
-    font-size: 16px;
+    font-size: 24px;
     border: none;
-    font-family: Times;
+    font-family: Garamond;
 }
   
   /* The container <div> - needed to position the dropdown content */
   .dropdown {
-    position: relative;
+    position: absolute;
     display: inline-block;
+    right: 20px;
   }
   
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
+    min-width: 200px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    right: 0px;
+    font-family: Garamond
   }
   
   /* Links inside the dropdown */
   .dropdown-content a {
     color: black;
+    font-size: 24px;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    text-align: right;
+    font-family: Garamond
   }
   
   /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {background-color: #ddd;}
+  .dropdown-content a:hover {color: gray;}
   
   /* Show the dropdown menu on hover */
   .dropdown:hover .dropdown-content {display: block;}
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
-  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+  .dropdown:hover .dropbtn {background-color: whitesmoke;}
