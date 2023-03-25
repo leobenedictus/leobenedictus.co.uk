@@ -11,11 +11,17 @@ p {
     margin: 0 30%;
     text-align: left;
     font-size: 20px;
+    min-width: 500px;
+}
+
+.cover {
+  padding: 5px;
 }
 
 .center {
     display: block;
     text-align: center;
+    margin: 0 30%;
 }
 
 .column {
@@ -24,6 +30,7 @@ p {
 
 .row {
     margin: auto;
+    min-width: 200px;
 }
 
 /* Clear floats after the columns */
@@ -49,6 +56,8 @@ p {
     position: absolute;
     display: inline-block;
     right: 20px;
+    background-color: whitesmoke;
+    opacity: 1;
   }
   
   /* Dropdown Content (Hidden by Default) */
