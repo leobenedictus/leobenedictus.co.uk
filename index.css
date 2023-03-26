@@ -8,10 +8,15 @@ p {
 
 .quotes {
     overflow: hidden;
-    margin: 0 15%;
+    margin: 0 auto;
     text-align: left;
     font-size: 20px;
     min-width: 200px;
+    width: 40%;
+
+    @media (max-width: 768px) {
+      width: 90%; /* set the width to 90% for smaller screens */
+    }
 }
 
 .cover {
