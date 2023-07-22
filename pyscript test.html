@@ -1,0 +1,22 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://pyscript.net/snapshots/2023.03.1.RC2/pyscript.css" />
+    <script defer src="https://pyscript.net/snapshots/2023.03.1.RC2/pyscript.js"></script>
+</head>
+<body>
+    <py-config type="toml">
+packages = [
+    "pandas"
+]
+    </py-config>
+    <py-script>
+import js
+import pandas as pd
+
+js.console.log( "2023.03.1.RC2" )
+js.document.title = "2023.03.1.RC2"
+print( "2023.03.1.RC2" )
+print( pd.show_versions() )
+    </py-script>
+</body>
+</html>
