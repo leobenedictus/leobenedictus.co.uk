@@ -2,10 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consent / Read Me</title>
-    <link rel="stylesheet" href="index.css">
+    <title>Leo Benedictus</title>
+    <meta name="description" content="Leo Benedictus — novelist, journalist, and data writer. Author of The Afterparty and Consent. Substack: Interesting Data.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5SF7X3CWGY"></script>
@@ -13,150 +16,118 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-5SF7X3CWGY');
 </script>
 <body>
-    <div class="dropdown">
-        <button class="dropbtn">Consent</button>
-        <div class="dropdown-content">
-          <a href="about.html">About</a>
-          <a href="The Afterparty.html">The Afterparty</a>
-          <a href="journalism.html">Journalism</a>
+
+<nav>
+    <a class="nav-name" href="index.html">Leo Benedictus</a>
+    <ul class="nav-links">
+        <li>
+            <button class="nav-dropdown-btn" aria-haspopup="true">Books</button>
+            <div class="nav-dropdown-menu">
+                <a href="consent.html">Consent / Read Me</a>
+                <a href="afterparty.html">The Afterparty</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<div class="page">
+
+    <div class="hero">
+        <img class="hero-photo" src="resources/leo-benedictus-400x400.jpeg" alt="Leo Benedictus">
+        <h1>Leo Benedictus</h1>
+        <p class="hero-tagline">Novelist and data writer</p>
+    </div>
+
+    <div class="substack-block">
+        <h2>Interesting Data</h2>
+        <p class="tagline">Writing about the hidden patterns in everyday life</p>
+
+        <div class="latest-post" id="latest-post" style="display:none">
+            <p class="latest-post-label">Latest post</p>
+            <a class="latest-post-title" id="latest-post-title" href="#" target="_blank"></a>
+            <p class="latest-post-excerpt" id="latest-post-excerpt"></p>
+        </div>
+
+        <form class="subscribe-form" onsubmit="subscribeSubstack(event)">
+            <input type="email" id="sub-email" placeholder="your@email.com" required>
+            <button type="submit">Subscribe</button>
+        </form>
+
+        <a class="substack-link" href="https://leobenedictus.substack.com" target="_blank">Read all posts on Substack &rarr;</a>
+    </div>
+
+    <div class="section">
+        <div class="prose">
+            <p>I write novels and articles. I spent 15 years as a freelance feature writer, mainly for the <a href="https://www.theguardian.com/profile/leobenedictus">Guardian</a>, and also wrote for the <a href="https://www.bbc.com/future/article/20200911-the-hidden-accents-that-betray-who-you-are">BBC</a>, <a href="https://www.newscientist.com/author/leo-benedictus/">New Scientist</a>, <a href="https://www.prospectmagazine.co.uk/author/Leo-Benedictus">Prospect</a>, and the <a href="https://www.lrb.co.uk/contributors/leo-benedictus">London Review of Books</a>. My journalism has won awards from Amnesty International, the Commission for Racial Equality, and the Work Foundation.</p>
+            <p>At the beginning of 2020, I joined <a href="https://fullfact.org/">Full Fact</a>, where I write mainly about science and statistics. I am a self-taught data journalist and build simple tools using AI models.</p>
+            <p>I live in Brighton. My literary agent is <a href="https://cwagency.co.uk/agent/sophie-lambert">Sophie Lambert at C+W</a>. Feel free to email me at <a href="mailto:interestingdata.substack@gmail.com">interestingdata.substack@gmail.com</a>.</p>
         </div>
     </div>
-    <br><br>
-    <br><br><br>
-    <div class="center">
-    <a class="cover" href="https://www.amazon.co.uk/Consent-Read-Me-Leo-Benedictus-ebook/dp/B076QLG51K/" target="_blank">
-    <img src="resources/consent uk pb.jpeg" width="150">
-    </a> 
-    <a class="cover" href="https://www.amazon.co.uk/Consent-Leo-Benedictus/dp/0571335888/" target="_blank">
-    <img src="resources/consent-cover_hb.jpeg" width="150">
-    </a>
-    <a class="cover" href="https://www.amazon.com/Read-Me-Novel-Leo-Benedictus/dp/1538711478/" target="_blank">
-    <img src="resources/readme-cover.jpeg" width="150">
-    </a>
-    <a class="cover" href="https://www.amazon.co.uk/L%C3%A5t-mig-Leo-Benedictus/dp/9187917548/" target="_blank">
-    <img src="resources/LÅTMIG_OMSLAG_beskuren.jpeg" width="150">
-    </a>
-    <a class="cover" href="https://www.amazon.co.uk/Wie-zwijgt-Dutch-Leo-Benedictus-ebook/dp/B08P64TC7Y" target="_blank">
-    <img src="resources/Wie Zwijgt.jpeg" width="150">
-    </a>
-    <a class="cover" href="https://www.amazon.co.uk/Ad-ogni-tuo-sguardo-Italian-ebook/dp/B09HSG1JDM" target="_blank">
-    <img src="resources/Ad Ogni Tuo Sguardo.jpeg" width="150">
-    </a>
-    </div>
-    <div class="quotes">
-    <div class="row">
-        <div class="column">
-            <p>
-                “Ingeniously nasty… reminiscent of Vladimir Nabokov and Patricia Highsmith… Expect to be provoked by a teasing metafictional game.”
-                John Dugdale, <a href = "https://web.archive.org/web/20190913131425/https://www.thetimes.co.uk/magazine/culture/need-to-know-karen-cleveland-anatomy-scandal-sarah-vaughan-the-wife-alafair-burke-consent-leo-benedictus-thrillers-review-p602w8ktl">Sunday Times</a><br><br>
-            
-                “Creepily thought-provoking… [The narrator’s] manipulations are so cruel, his acts of violence so vile, that it feels profoundly disconcerting to have ever been seduced by him.”
-                Melissa Broder, <a href="https://www.nytimes.com/2018/08/29/books/review/read-me-leo-benedictus.html?smid=tw-nytbooks&smtyp=cur">The New York Times</a><br><br>
-            
-                “At times almost unreadably horrible… Consent is thought-provoking as well as shocking… A compulsive dark comedy that entertains and unnerves in equal measure.” ★★★★
-                Anthony Cummins, <a href="https://web.archive.org/web/20190913131425/https://www.metro.news/metro-book-chat-stalkers-tale-of-gender-relations/916653/">Metro</a><br><br>
-            A word of warning: do not pick up this novella late at night. Not if you’d like to sleep any time soon… Darkly addictive.
-            
-                Hephzibah Anderson, The Mail on Sunday<br><br>
-            Queasily compelling… Perhaps most unsettling is the narrator’s voice… There is no denying the ingenuity with which Benedictus constructs his tale.
-            
-                Barry Forshaw, <a href = "https://web.archive.org/web/20190913131425/https://www.ft.com/content/a922c8a4-2878-11e8-9274-2b13fccdc744">The Financial Times</a><br><br>
-            This is a novel that plays with the conventions of the form… great subtlety and wit… unusual and enormously compelling.
-            
-                Alex Preston, <a href="https://web.archive.org/web/20190913131425/https://www.theguardian.com/books/2018/jan/21/consent-by-leo-benedictus-fear-by-dirk-kurbjuweit-review">The Observer</a><br><br>
-            Another clever, cutting riff on the book-within-a book… this strangely congenial thriller-cum-treatise ends on a note of provocative ambiguity.
-            
-                Catherine Taylor, <a href ="https://web.archive.org/web/20190913131425/https://www.theguardian.com/books/2018/jan/25/consent-leo-benedictus-review?CMP=twt_books_b-gdnbooks">The Guardian</a><br><br>
-            In its best moments this novel suggests a reimagining of John Fowles’ The Collector for an age of social media, constant surveillance, and toxic masculinity. Unfortunately, in the novel's second half, its narrator engages in a series of even more horrific acts, turning a work of psychological suspense into something more visceral.
-            
-            <a href="https://web.archive.org/web/20230722081122/https://www.kirkusreviews.com/book-reviews/leo-benedictus/read-me/">Kirkus</a><br><br>
-                A fiendishly clever book, though not for the soft-hearted… You’ll find yourself turning pages in the most disturbing kind of grip.
-            
-                Cameron Woodhead, <a href="https://web.archive.org/web/20190913131425/https://www.smh.com.au/entertainment/books/consent-review-leo-benedictus-psychological-thriller-grips-in-a-disturbing-way-20180226-h0wn7t.html?utm_medium=rss&utm_source=rss_feed">Sydney Morning Herald</a><br><br>
-            By turns whimsical and bone-chillingly explicit, Consent is a gripping reimagining of one of the crime genre’s most tired tropes.
-            
-                Declan Burke, <a href="https://web.archive.org/web/20190913131425/https://www.irishtimes.com/culture/books/crime-fiction-highlights-the-woman-in-the-window-genuine-fraud-the-long-silence-one-good-reason-consent-1.3398746">The Irish Times</a><br><br>
-            Not a particularly original contribution to an over-saturated genre
-            
-                Alice Wadsworth, <a href="https://web.archive.org/web/20190913131425/https://www.the-tls.co.uk/articles/private/observation-benedictus/">The Times Literary Supplement</a><br><br>
-            Claustrophobic intensity… makes it a memorable and rewarding, if far from comfortable, experience.
-            
-                Jake Kerridge, The Sunday Express<br><br>
 
-            The second part of the book is dominated by an extended scene that is so gruesomely awful it will sicken you. Phil Harvey <a href="https://web.archive.org/web/20230722082228/https://www.washingtonindependentreviewofbooks.com/bookreview/read-me-a-novel">Washington Independent Review of Books</a><br><br>
-            
-            We’ll warn you now: Benedictus’s latest book - a psychopathic stalker’s journal - is pitch black. The stuff of nightmares.
-            
-                Anon, Shortlist<br><br>
-            Consent is a carefully crafted and completely chilling novel where all the possibilities are open – until they suddenly snap closed. Book of the Week
-            
-                David Herkt, <a href="https://web.archive.org/web/20190913131425/https://www.stuff.co.nz/life-style/life/102779245/book-of-the-week-april-7-2018">Stuff</a><br><br>
-            Part-crime, part-thriller, part-horror novel from the much-praised author of The Afterparty… This is a disturbing book.
-            
-                Sebastian Shakespeare, Tatler<br><br>
-            
-            Read Me offers a salacious, disturbing, and increasingly focused look into the mind of a stalker. Michael Ruzicka, <a href="https://web.archive.org/web/20230722082621/https://www.booklistonline.com/Read-Me-Leo-Benedictus/pid=9497268">Booklist</a><br><br>
-            
-            This is a smart, powerful, chilling novel that has antecedents in Hitchcock, Stephen King and even the very precise Nicholson Baker. But it’s not for the faint-hearted.  Lorraine W. Shanley, <a href="https://web.archive.org/web/20230722082930/https://www.bookreporter.com/reviews/read-me">bookreporter</a><br><br>
-
-            If you want to be nearly scared to death, this is the book for you.
-            
-                Anon, <a href="https://web.archive.org/web/20190913131425/https://www.whichbook.net/book.aspx?id=12172">Whichbook.net</a><br><br>
-            Consent is a pacy and chilling thriller about our voyeuristic obsession with other people.
-                Mark, <a href="https://web.archive.org/web/20190913131425/http://wordsshortlist.blogspot.co.uk/2018/05/consent-by-leo-benedictus.html">The Word’s Shortlist</a><br><br>
+    <div class="section">
+        <hr class="section-rule">
+        <div class="books-grid">
+            <a class="book-link" href="consent.html">
+                <img src="resources/consent uk pb.jpeg" alt="Consent">
+                <div class="book-title">Consent / Read Me</div>
+                <div class="book-year">2018</div>
+            </a>
+            <a class="book-link" href="afterparty.html">
+                <img src="resources/the-afterparty-cover.jpeg" alt="The Afterparty">
+                <div class="book-title">The Afterparty</div>
+                <div class="book-year">2011</div>
+            </a>
         </div>
-       <div class="column">
-            His sparse, clean style… grips the reader in its claws… For those who enjoy clever and unsettling thrillers, this one is unmissable.
-            
-                Kelly Pells, <a href="https://web.archive.org/web/20190913131425/http://www.thisislocallondon.co.uk/news/16052157.Clever_and_unsettling_thriller_from_Guardian_journalist/">This is Local London</a><br><br>
-            Such a great read and the product of a highly entertaining and disturbingly dark mind. If I was a friend of Leo Benedictus, I’d be reconsidering my options.
-            
-                Stephen Mangan<br><br>
-            Beautiful writing and a modest, pensive protagonist… A brilliant and goosebumpy read!
-            
-                Susan Crawford<br><br>
-            A darkly elegant thriller - I was enthralled.
-            
-                Renée Knight<br><br>
-            A fascinating, disturbing and original thriller that erases the boundaries of the genre and draws challenging new ones
-            
-                Sophie Hannah<br><br>
-            Read Me offers a salacious, disturbing, and increasingly focused look into the mind of a stalker.
-            
-                Michael Ruzicka, <a href="https://web.archive.org/web/20190913131425/https://www.booklistonline.com/Read-Me-Leo-Benedictus/pid=9497268">Booklist</a><br><br>
-            Absolutely superb… a truly dark and deliciously twisted thriller… Benedictus is completely without fear… I was mesmerised.
-            
-                Raven, <a href="https://web.archive.org/web/20190913131425/https://ravencrimereads.wordpress.com/2018/03/15/theres-always-someone-watching-leo-benedictus-consent-james-lasdun-the-fall-guy/">Raven Crime Reads</a><br><br>
-            Fantastic… really got into my head… Engaging but unnerving, creepy but intriguing. I was gripped from start to finish! There are so many elements of this book that I want to praise.
-            
-                Ronnie Turner, <a href="https://web.archive.org/web/20190913131425/https://ronnieturner.wordpress.com/2018/02/21/consent-by-leo-benedictus-bookreview-consent/">Blog</a><br><br>
-            It is a short novel, but one which you won’t forget in a hurry… I was appalled and approving in equal measure… Whilst it is certainly not for the faint hearted, it is a compelling and clever read.
-            
-                Anon, <a href="https://web.archive.org/web/20190913131425/http://honestbookaholic.com/review-of-consent-by-leo-benedictus/">Honestbookaholic.com</a><br><br>
-            It’s dark as pitch on a black night in the height of winter, and at times it’s a little neat, but for all that it’s an almighty page turner that will have you in its grip until the final page.
-            
-                Anon, <a href="https://web.archive.org/web/20190913131425/https://bookmunch.wordpress.com/2018/02/06/dark-as-pitch-on-a-black-night-in-the-height-of-winter-consent-by-leo-benedictus/">Bookmunch</a><br><br>
-            Leo Benedictus gradually pulls the reader into his character’s nightmare mind… a clever and satisfying second novel.
-            
-                Anne Goodwin, <a href="https://web.archive.org/web/20190913131425/http://annegoodwin.weebly.com/annecdotal/people-studies-sight-consent">Annethology</a><br><br>
-            Leo Benedictus is prepared to take risks… This is a stylish psycho thriller… And it ends with a bang!
-            
-                Toria Forsyth-Moser, <a href="https://web.archive.org/web/20190913131425/http://thecrimewarp.blogspot.co.uk/2018/02/consent-by-leo-benedictus-book-review.html">The Crime Warp</a><br><br>
-            A literary stalker novel with a wicked difference… its tale of lies, love and deceit unfolds in snake-like manner… Compelling and unsettling both.
-            
-                Maxim Jakobowski, <a href="https://web.archive.org/web/20190913131425/http://www.crimetime.co.uk/max-maxim-jakubowski-new-crime-2/">Crime Time</a><br><br>
-            It is intelligently written and the idea is horrible… It was a decent read, and it’s disturbing, graphic in parts, but I was left scratching my head.
-            
-                Lolly K Dandeneau, <a href="https://web.archive.org/web/20190913131425/https://bookstalkerblog.wordpress.com/2018/06/06/read-me-a-novel-by-leo-benedictus/">BookStalkerBlog</a><br><br>
-            A queasily compelling novel that demands shuddering admiration.
-            
-                The Listener, <a href="https://web.archive.org/web/20190913131425/https://www.noted.co.nz/culture/books/100-best-books-of-2018-listener/">Best Books of 2018</a><br><br></p>
-       </div>
     </div>
-    </div>
+
+</div>
+
+<footer>
+    <p><a href="mailto:interestingdata.substack@gmail.com">interestingdata.substack@gmail.com</a> &nbsp;&middot;&nbsp; <a href="https://leobenedictus.substack.com">Substack</a></p>
+</footer>
+
+<script>
+    function subscribeSubstack(e) {
+        e.preventDefault();
+        const email = encodeURIComponent(document.getElementById('sub-email').value);
+        window.open('https://leobenedictus.substack.com/subscribe?email=' + email, '_blank');
+    }
+
+    function renderLatestPost(title, link, descriptionHtml) {
+        const tmp = document.createElement('div');
+        tmp.innerHTML = descriptionHtml;
+        const excerpt = (tmp.textContent || tmp.innerText || '').trim();
+        document.getElementById('latest-post-title').textContent = title;
+        document.getElementById('latest-post-title').href = link;
+        document.getElementById('latest-post-excerpt').textContent = excerpt;
+        document.getElementById('latest-post').style.display = 'block';
+    }
+
+    fetch('https://leobenedictus.substack.com/feed')
+        .then(r => { if (!r.ok) throw new Error(); return r.text(); })
+        .then(xml => {
+            const doc = new DOMParser().parseFromString(xml, 'text/xml');
+            const item = doc.querySelector('item');
+            if (!item) throw new Error();
+            const title = item.getElementsByTagName('title')[0]?.textContent?.trim();
+            const link  = item.getElementsByTagName('link')[0]?.textContent?.trim();
+            const desc  = item.getElementsByTagName('description')[0]?.textContent || '';
+            if (title && link) renderLatestPost(title, link, desc);
+        })
+        .catch(() => {
+            const feed = encodeURIComponent('https://leobenedictus.substack.com/feed');
+            fetch('https://api.rss2json.com/v1/api.json?rss_url=' + feed)
+                .then(r => r.json())
+                .then(data => {
+                    const post = data.items?.[0];
+                    if (post?.title && post?.link) renderLatestPost(post.title, post.link, post.description || '');
+                })
+                .catch(() => {});
+        });
+</script>
+
 </body>
 </html>
