@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leo Benedictus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --dark: #0f1923;
+            --bg: #ffffff;
+            --soft: #f4f5f6;
+            --ink: #1a2029;
+            --mid: #5a6473;
+            --rule: #e2e5e9;
+            --accent: #2a7c6f;
+            --accent-light: #e6f4f1;
+            --serif: 'Playfair Display', Georgia, serif;
+            --sans: 'Inter', system-ui, sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--sans);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* ── NAV ── */
+        nav {
+            background: var(--dark);
+            padding: 0 5vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+
+        .nav-name {
+            font-family: var(--serif);
+            font-size: 1.2rem;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: 0.01em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.65);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: color 0.15s;
+        }
+
+        .nav-links a:hover { color: #ffffff; }
+
+        /* ── HERO ── */
+        .hero {
+            background: var(--dark);
+            padding: 60px 5vw 70px;
+        }
+
+        .hero-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-family: var(--serif);
+            font-size: 3rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .hero-text p {
+            color: rgba(255,255,255,0.65);
+            font-size: 1.05rem;
+            max-width: 480px;
+            margin-bottom: 32px;
+        }
+
+        .hero-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center top;
+            border: 3px solid rgba(255,255,255,0.15);
+        }
+
+        /* ── SUBSTACK BAND ── */
+        .substack-band {
+            background: var(--accent);
+            padding: 0 5vw;
+        }
+
+        .substack-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 28px 0;
+        }
+
+        .substack-copy strong {
+            display: block;
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            color: #ffffff;
+            font-style: italic;
+            font-weight: 400;
+            margin-bottom: 2px;
+        }
+
+        .substack-copy span {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+
+        .substack-cta {
+            display: inline-block;
+            background: #ffffff;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.875rem;
+            padding: 10px 22px;
+            border-radius: 4px;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: opacity 0.15s;
+        }
+
+        .substack-cta:hover { opacity: 0.9; }
+
+        /* ── MAIN CONTENT ── */
+        main {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 56px 5vw;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 64px;
+        }
+
+        /* ── ABOUT ── */
+        .about h2 {
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--ink);
+        }
+
+        .about p {
+            color: var(--ink);
+            margin-bottom: 1em;
+        }
+
+        .about a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .about a:hover { text-decoration: underline; }
+
+        /* ── SIDEBAR ── */
+        .sidebar {}
+
+        .sidebar-section {
+            margin-bottom: 40px;
+        }
+
+        .sidebar-section h3 {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        /* ── BOOK CARDS ── */
+        .book-card {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            text-decoration: none;
+            color: var(--ink);
+            padding: 14px;
+            border-radius: 6px;
+            transition: background 0.15s;
+            margin-bottom: 8px;
+        }
+
+        .book-card:hover { background: var(--soft); }
+
+        .book-card img {
+            width: 52px;
+            flex-shrink: 0;
+            box-shadow: 2px 3px 10px rgba(0,0,0,0.15);
+        }
+
+        .book-card-text {}
+
+        .book-card-title {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 1rem;
+            margin-bottom: 2px;
+        }
+
+        .book-card-year {
+            font-size: 0.8rem;
+            color: var(--mid);
+        }
+
+        /* ── TOOLS CHIP ── */
+        .tools-chip {
+            display: block;
+            padding: 14px 16px;
+            background: var(--accent-light);
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--accent);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            transition: background 0.15s;
+        }
+
+        .tools-chip:hover { background: #d0ece8; }
+
+        .tools-chip span {
+            display: block;
+            color: var(--mid);
+            font-weight: 400;
+            font-size: 0.8rem;
+            margin-top: 2px;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid var(--rule);
+            text-align: center;
+            padding: 28px 5vw;
+            font-size: 0.85rem;
+            color: var(--mid);
+        }
+
+        footer a { color: var(--mid); text-decoration: none; }
+        footer a:hover { color: var(--ink); }
+
+        @media (max-width: 720px) {
+            .hero-inner { grid-template-columns: 1fr; }
+            .hero-photo { display: none; }
+            .hero-text h1 { font-size: 2.2rem; }
+            main { grid-template-columns: 1fr; gap: 40px; }
+            .substack-inner { flex-direction: column; text-align: center; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a class="nav-name" href="#">Leo Benedictus</a>
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Books</a></li>
+        <li><a href="#">Tools</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="hero">
+    <div class="hero-inner">
+        <div class="hero-text">
+            <h1>Leo Benedictus</h1>
+            <p>Novelist, journalist, and data writer. Author of <em>The Afterparty</em> and <em>Consent</em>. Previously the Guardian, now Full Fact.</p>
+        </div>
+        <img class="hero-photo" src="resources/leo-benedictus-400x400.jpeg" alt="Leo Benedictus">
+    </div>
+</div>
+
+<div class="substack-band">
+    <div class="substack-inner">
+        <div class="substack-copy">
+            <strong>Interesting Data</strong>
+            <span>A newsletter about data, statistics, and the hidden patterns in everyday life</span>
+        </div>
+        <a class="substack-cta" href="https://leobenedictus.substack.com" target="_blank">Read on Substack &rarr;</a>
+    </div>
+</div>
+
+<main>
+    <article class="about">
+        <h2>About</h2>
+        <p>I write novels and articles. I spent 15 years as a freelance feature writer, mainly for the <a href="https://www.theguardian.com/profile/leobenedictus">Guardian</a>, and also wrote for the <a href="https://www.bbc.com/future/article/20200911-the-hidden-accents-that-betray-who-you-are">BBC</a>, <a href="https://www.newscientist.com/author/leo-benedictus/">New Scientist</a>, <a href="https://www.prospectmagazine.co.uk/author/Leo-Benedictus">Prospect</a>, and the <a href="https://www.lrb.co.uk/contributors/leo-benedictus">London Review of Books</a>.</p>
+        <p>My journalism has won awards from Amnesty International, the Commission for Racial Equality, and the Work Foundation.</p>
+        <p>At the beginning of 2020, I joined <a href="https://fullfact.org/">Full Fact</a>, where I have been able to write more often about science and statistics. I am a self-taught data journalist, and build simple tools using AI models.</p>
+        <p>I live in Brighton. My literary agent is <a href="https://cwagency.co.uk/agent/sophie-lambert">Sophie Lambert at C+W</a>.</p>
+    </article>
+
+    <aside class="sidebar">
+        <div class="sidebar-section">
+            <h3>Books</h3>
+            <a class="book-card" href="The Afterparty.html">
+                <img src="resources/the-afterparty-cover.jpeg" alt="The Afterparty">
+                <div class="book-card-text">
+                    <div class="book-card-title">The Afterparty</div>
+                    <div class="book-card-year">Jonathan Cape &amp; Vintage, 2011</div>
+                </div>
+            </a>
+            <a class="book-card" href="index.html">
+                <img src="resources/consent uk pb.jpeg" alt="Consent">
+                <div class="book-card-text">
+                    <div class="book-card-title">Consent / Read Me</div>
+                    <div class="book-card-year">Faber / Twelve, 2018</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="sidebar-section">
+            <h3>Tools</h3>
+            <a class="tools-chip" href="#">
+                Coming soon
+                <span>Interactive tools, linked from Interesting Data</span>
+            </a>
+        </div>
+    </aside>
+</main>
+
+<footer>
+    <p>leo.benedictus@fullfact.org &nbsp;&middot;&nbsp; <a href="https://leobenedictus.substack.com">Substack</a></p>
+</footer>
+
+</body>
+</html>

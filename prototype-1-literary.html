@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leo Benedictus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #faf9f6;
+            --ink: #1c1c1a;
+            --mid: #6b6b65;
+            --rule: #d8d5cc;
+            --accent: #1c1c1a;
+            --font: 'EB Garamond', Georgia, serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--font);
+            font-size: 20px;
+            line-height: 1.65;
+        }
+
+        /* ── NAV ── */
+        nav {
+            border-bottom: 1px solid var(--rule);
+            padding: 0 5vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-name {
+            font-size: 1.15rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--ink);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--mid);
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 0.03em;
+            transition: color 0.15s;
+        }
+
+        .nav-links a:hover { color: var(--ink); }
+
+        /* ── HERO ── */
+        .hero {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 80px 5vw 0;
+            text-align: center;
+        }
+
+        .hero-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center top;
+            margin-bottom: 32px;
+            filter: grayscale(20%);
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            margin-bottom: 12px;
+        }
+
+        .hero-tagline {
+            color: var(--mid);
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-bottom: 48px;
+        }
+
+        /* ── SUBSTACK BLOCK ── */
+        .substack-block {
+            border: 1px solid var(--rule);
+            border-radius: 2px;
+            padding: 36px 40px;
+            margin: 0 auto 72px;
+            max-width: 560px;
+            text-align: center;
+        }
+
+        .substack-block h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .substack-block .tagline {
+            color: var(--mid);
+            font-size: 0.95rem;
+            margin-bottom: 28px;
+            font-style: italic;
+        }
+
+        /* latest post */
+        .latest-post {
+            text-align: left;
+            border-top: 1px solid var(--rule);
+            padding-top: 20px;
+            margin-bottom: 28px;
+        }
+
+        .latest-post-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-bottom: 8px;
+        }
+
+        .latest-post-title {
+            font-style: italic;
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+            color: var(--ink);
+            text-decoration: none;
+        }
+
+        .latest-post-title:hover { text-decoration: underline; }
+
+        .latest-post-excerpt {
+            font-size: 0.88rem;
+            color: var(--mid);
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* subscribe form */
+        .subscribe-form {
+            display: flex;
+            gap: 0;
+            margin-bottom: 18px;
+        }
+
+        .subscribe-form input[type="email"] {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid var(--rule);
+            border-right: none;
+            font-family: var(--font);
+            font-size: 0.95rem;
+            background: var(--bg);
+            color: var(--ink);
+            outline: none;
+            border-radius: 0;
+        }
+
+        .subscribe-form input[type="email"]:focus {
+            border-color: var(--ink);
+        }
+
+        .subscribe-form button {
+            padding: 10px 20px;
+            border: 1px solid var(--ink);
+            background: var(--ink);
+            color: var(--bg);
+            font-family: var(--font);
+            font-size: 0.95rem;
+            cursor: pointer;
+            letter-spacing: 0.02em;
+            transition: opacity 0.15s;
+            border-radius: 0;
+        }
+
+        .subscribe-form button:hover { opacity: 0.75; }
+
+        .substack-btn {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--mid);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            text-underline-offset: 3px;
+        }
+
+        .substack-btn:hover {
+            color: var(--ink);
+            text-decoration: underline;
+        }
+
+        /* ── SECTION ── */
+        .section {
+            max-width: 640px;
+            margin: 0 auto 72px;
+            padding: 0 5vw;
+        }
+
+        .section-rule {
+            border: none;
+            border-top: 1px solid var(--rule);
+            margin-bottom: 40px;
+        }
+
+        .section-label {
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-bottom: 24px;
+        }
+
+        /* ── ABOUT ── */
+        .about-text p {
+            margin-bottom: 1em;
+            color: var(--ink);
+        }
+
+        .about-text a {
+            color: var(--ink);
+            text-decoration-color: var(--rule);
+            text-underline-offset: 3px;
+        }
+
+        .about-text a:hover {
+            text-decoration-color: var(--ink);
+        }
+
+        /* ── BOOKS ── */
+        .books {
+            display: flex;
+            gap: 40px;
+        }
+
+        .book {
+            text-align: center;
+            text-decoration: none;
+            color: var(--ink);
+            flex: 1;
+        }
+
+        .book img {
+            width: 100%;
+            max-width: 130px;
+            box-shadow: 4px 6px 18px rgba(0,0,0,0.15);
+            margin-bottom: 14px;
+            transition: transform 0.2s;
+        }
+
+        .book:hover img { transform: translateY(-3px); }
+
+        .book-title {
+            font-style: italic;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .book-year {
+            font-size: 0.85rem;
+            color: var(--mid);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid var(--rule);
+            text-align: center;
+            padding: 32px 5vw;
+            font-size: 0.85rem;
+            color: var(--mid);
+        }
+
+        footer a { color: var(--mid); }
+        footer a:hover { color: var(--ink); }
+
+        @media (max-width: 560px) {
+            .hero h1 { font-size: 1.9rem; }
+            .books { flex-direction: column; align-items: center; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a class="nav-name" href="#">Leo Benedictus</a>
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Books</a></li>
+        <li><a href="#">Tools</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="hero">
+    <img class="hero-photo" src="resources/leo-benedictus-400x400.jpeg" alt="Leo Benedictus">
+    <h1>Leo Benedictus</h1>
+    <p class="hero-tagline">Novelist, journalist, and data writer</p>
+</div>
+
+<div class="substack-block">
+    <h2>Interesting Data</h2>
+    <p class="tagline">Writing about data, statistics, and the hidden patterns in everyday life</p>
+
+    <div class="latest-post" id="latest-post" style="display:none">
+        <p class="latest-post-label">Latest post</p>
+        <a class="latest-post-title" id="latest-post-title" href="#" target="_blank"></a>
+        <p class="latest-post-excerpt" id="latest-post-excerpt"></p>
+    </div>
+
+    <form class="subscribe-form" onsubmit="subscribeSubstack(event)">
+        <input type="email" id="sub-email" placeholder="your@email.com" required>
+        <button type="submit">Subscribe</button>
+    </form>
+
+    <a class="substack-btn" href="https://leobenedictus.substack.com" target="_blank">Read all posts on Substack &rarr;</a>
+</div>
+
+<div class="section">
+    <hr class="section-rule">
+    <p class="section-label">About</p>
+    <div class="about-text">
+        <p>I write novels and articles. I spent 15 years as a freelance feature writer, mainly for the <a href="https://www.theguardian.com/profile/leobenedictus">Guardian</a>, and also wrote for the BBC, New Scientist, Prospect, and the London Review of Books.</p>
+        <p>At the beginning of 2020, I joined <a href="https://fullfact.org/">Full Fact</a>, where I have been able to write more often about science and statistics. I am a self-taught data journalist and build simple tools using AI models.</p>
+        <p>I live in Brighton. My agent is <a href="https://cwagency.co.uk/agent/sophie-lambert">Sophie Lambert at C+W</a>.</p>
+    </div>
+</div>
+
+<div class="section">
+    <hr class="section-rule">
+    <p class="section-label">Books</p>
+    <div class="books">
+        <a class="book" href="The Afterparty.html">
+            <img src="resources/the-afterparty-cover.jpeg" alt="The Afterparty">
+            <div class="book-title">The Afterparty</div>
+            <div class="book-year">2011</div>
+        </a>
+        <a class="book" href="index.html">
+            <img src="resources/consent uk pb.jpeg" alt="Consent / Read Me">
+            <div class="book-title">Consent / Read Me</div>
+            <div class="book-year">2018</div>
+        </a>
+    </div>
+</div>
+
+<footer>
+    <p>leo.benedictus@fullfact.org &nbsp;&middot;&nbsp; <a href="https://leobenedictus.substack.com">Substack</a></p>
+</footer>
+
+<script>
+    // Subscribe: open Substack page with email pre-filled
+    function subscribeSubstack(e) {
+        e.preventDefault();
+        const email = encodeURIComponent(document.getElementById('sub-email').value);
+        window.open('https://leobenedictus.substack.com/subscribe?email=' + email, '_blank');
+    }
+
+    function renderLatestPost(title, link, descriptionHtml) {
+        const tmp = document.createElement('div');
+        tmp.innerHTML = descriptionHtml;
+        const excerpt = (tmp.textContent || tmp.innerText || '').trim();
+
+        document.getElementById('latest-post-title').textContent = title;
+        document.getElementById('latest-post-title').href = link;
+        document.getElementById('latest-post-excerpt').textContent = excerpt;
+        document.getElementById('latest-post').style.display = 'block';
+    }
+
+    // Attempt 1: fetch Substack RSS directly (works if Substack allows CORS on the feed)
+    fetch('https://leobenedictus.substack.com/feed')
+        .then(r => { if (!r.ok) throw new Error(); return r.text(); })
+        .then(xml => {
+            const doc = new DOMParser().parseFromString(xml, 'text/xml');
+            const item = doc.querySelector('item');
+            if (!item) throw new Error();
+            const title = item.getElementsByTagName('title')[0]?.textContent?.trim();
+            const link  = item.getElementsByTagName('link')[0]?.textContent?.trim();
+            const desc  = item.getElementsByTagName('description')[0]?.textContent || '';
+            if (title && link) renderLatestPost(title, link, desc);
+        })
+        .catch(() => {
+            // Attempt 2: fall back to rss2json proxy
+            const feed = encodeURIComponent('https://leobenedictus.substack.com/feed');
+            fetch('https://api.rss2json.com/v1/api.json?rss_url=' + feed)
+                .then(r => r.json())
+                .then(data => {
+                    const post = data.items?.[0];
+                    if (post?.title && post?.link) {
+                        renderLatestPost(post.title, post.link, post.description || '');
+                    }
+                })
+                .catch(() => { /* both failed — block stays hidden */ });
+        });
+</script>
+</body>
+</html>
