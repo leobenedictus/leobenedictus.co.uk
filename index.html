@@ -107,27 +107,15 @@
         document.getElementById('latest-post').style.display = 'block';
     }
 
-    fetch('https://leobenedictus.substack.com/feed')
-        .then(r => { if (!r.ok) throw new Error(); return r.text(); })
-        .then(xml => {
-            const doc = new DOMParser().parseFromString(xml, 'text/xml');
-            const item = doc.querySelector('item');
-            if (!item) throw new Error();
-            const title = item.getElementsByTagName('title')[0]?.textContent?.trim();
-            const link  = item.getElementsByTagName('link')[0]?.textContent?.trim();
-            const desc  = item.getElementsByTagName('description')[0]?.textContent || '';
-            if (title && link) renderLatestPost(title, link, desc);
+    fetch('https://leobenedictus.substack.com/api/v1/posts?limit=1')
+        .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+        .then(posts => {
+            const post = posts[0];
+            if (post?.title && post?.canonical_url) {
+                renderLatestPost(post.title, post.canonical_url, post.subtitle || '');
+            }
         })
-        .catch(() => {
-            const feed = encodeURIComponent('https://leobenedictus.substack.com/feed');
-            fetch('https://api.rss2json.com/v1/api.json?rss_url=' + feed)
-                .then(r => r.json())
-                .then(data => {
-                    const post = data.items?.[0];
-                    if (post?.title && post?.link) renderLatestPost(post.title, post.link, post.description || '');
-                })
-                .catch(() => {});
-        });
+        .catch(() => {});
 </script>
 
 </body>
