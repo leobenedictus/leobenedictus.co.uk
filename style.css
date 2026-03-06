@@ -431,6 +431,5 @@ footer a:hover { color: var(--ink); }
 }
 
 @media (max-width: 420px) {
-    .nav-links { display: none; }
     .books-grid { justify-content: center; }
 }
