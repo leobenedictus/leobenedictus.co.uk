@@ -107,9 +107,11 @@
         document.getElementById('latest-post').style.display = 'block';
     }
 
-    fetch('https://leobenedictus.substack.com/api/v1/posts?limit=1')
+    const substackApi = encodeURIComponent('https://leobenedictus.substack.com/api/v1/posts?limit=1');
+    fetch('https://api.allorigins.win/get?url=' + substackApi)
         .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-        .then(posts => {
+        .then(data => {
+            const posts = JSON.parse(data.contents);
             const post = posts[0];
             if (post?.title && post?.canonical_url) {
                 renderLatestPost(post.title, post.canonical_url, post.subtitle || '');
