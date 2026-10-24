@@ -63,7 +63,8 @@ nav {
     transition: color 0.15s;
 }
 
-.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover,
+.nav-links a[aria-current="page"] { color: var(--ink); }
 
 /* Books dropdown */
 .nav-dropdown-btn {
@@ -406,6 +407,71 @@ nav {
     font-style: italic;
     max-width: 420px;
     margin: 0 auto;
+}
+
+/* ── WRITING PAGE ── */
+.writing-header {
+    padding: 64px 0 40px;
+    text-align: center;
+}
+
+.writing-header h1 {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.writing-header p {
+    color: var(--mid);
+    font-style: italic;
+    font-size: 0.97rem;
+    max-width: 460px;
+    margin: 0 auto;
+}
+
+.writing-header a {
+    color: var(--mid);
+    text-decoration-color: var(--rule);
+    text-underline-offset: 3px;
+}
+
+.writing-header a:hover { color: var(--ink); }
+
+.post {
+    padding: 24px 0;
+    border-top: 1px solid var(--rule);
+}
+
+.post:last-child { border-bottom: 1px solid var(--rule); }
+
+.post-date {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 6px;
+}
+
+.post-title {
+    font-size: 1.22rem;
+    font-weight: 400;
+    line-height: 1.35;
+    margin-bottom: 6px;
+}
+
+.post-title a { text-decoration: none; }
+.post-title a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.post-summary {
+    font-size: 0.95rem;
+    color: var(--mid);
+    line-height: 1.55;
+}
+
+.writing-more {
+    text-align: center;
+    margin-top: 36px;
 }
 
 /* ── FOOTER ── */
