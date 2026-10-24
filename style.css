@@ -425,8 +425,11 @@ nav {
     color: var(--mid);
     font-style: italic;
     font-size: 0.97rem;
-    max-width: 520px;
-    margin: 0 auto;
+    /* Slightly wider than the page column, centred on it */
+    width: min(580px, 90vw);
+    margin-left: 50%;
+    transform: translateX(-50%);
+    text-wrap: balance;
 }
 
 .writing-header a {
