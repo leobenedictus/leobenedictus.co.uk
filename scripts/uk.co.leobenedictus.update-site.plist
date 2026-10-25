@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mac: rebuild the Writing page and home page latest post from Substack
+     every 6 hours, and push to GitHub if anything changed. Runs on next wake
+     if asleep. Uses its own clone so it never touches the Desktop copy:
+       git clone https://github.com/leobenedictus/leobenedictus.co.uk.git ~/leobenedictus.co.uk-updater
+       cp scripts/uk.co.leobenedictus.update-site.plist ~/Library/LaunchAgents/
+       launchctl load ~/Library/LaunchAgents/uk.co.leobenedictus.update-site.plist
+     Run now:   launchctl start uk.co.leobenedictus.update-site
+     Stop with: launchctl unload ~/Library/LaunchAgents/uk.co.leobenedictus.update-site.plist -->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>uk.co.leobenedictus.update-site</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/leobenedictus/leobenedictus.co.uk-updater/scripts/update-site.sh</string>
+  </array>
+  <key>StartInterval</key><integer>21600</integer>
+  <key>RunAtLoad</key><true/>
+  <key>StandardOutPath</key><string>/Users/leobenedictus/Library/Logs/leobenedictus-update-site.log</string>
+  <key>StandardErrorPath</key><string>/Users/leobenedictus/Library/Logs/leobenedictus-update-site.log</string>
+</dict>
+</plist>

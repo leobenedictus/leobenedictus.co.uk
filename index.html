@@ -55,11 +55,13 @@
         <h2>Interesting Data</h2>
         <p class="tagline">Writing about the hidden patterns in everyday life</p>
 
-        <div class="latest-post" id="latest-post" style="display:none">
+        <!-- latest-post: filled in by scripts/build_writing.py -->
+        <div class="latest-post">
             <p class="latest-post-label">Latest post</p>
-            <a class="latest-post-title" id="latest-post-title" href="#" target="_blank"></a>
-            <p class="latest-post-excerpt" id="latest-post-excerpt"></p>
+            <a class="latest-post-title" href="https://leobenedictus.substack.com/p/come-dine-with-me-the-dataset" target="_blank">Come Dine With Me: The Dataset 🍽️</a>
+            <p class="latest-post-excerpt">Twenty years of dinner party scores show us why male contestants are more likely to win.</p>
         </div>
+        <!-- /latest-post -->
 
         <form class="subscribe-form" onsubmit="subscribeSubstack(event)">
             <input type="email" id="sub-email" placeholder="your@email.com" required>
@@ -97,28 +99,6 @@
         const email = encodeURIComponent(document.getElementById('sub-email').value);
         window.open('https://leobenedictus.substack.com/subscribe?email=' + email, '_blank');
     }
-
-    function renderLatestPost(title, link, descriptionHtml) {
-        const tmp = document.createElement('div');
-        tmp.innerHTML = descriptionHtml;
-        const excerpt = (tmp.textContent || tmp.innerText || '').trim();
-        document.getElementById('latest-post-title').textContent = title;
-        document.getElementById('latest-post-title').href = link;
-        document.getElementById('latest-post-excerpt').textContent = excerpt;
-        document.getElementById('latest-post').style.display = 'block';
-    }
-
-    const substackApi = encodeURIComponent('https://leobenedictus.substack.com/api/v1/posts?limit=1');
-    fetch('https://api.allorigins.win/get?url=' + substackApi)
-        .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-        .then(data => {
-            const posts = JSON.parse(data.contents);
-            const post = posts[0];
-            if (post?.title && post?.canonical_url) {
-                renderLatestPost(post.title, post.canonical_url, post.subtitle || '');
-            }
-        })
-        .catch(() => {});
 </script>
 
 </body>

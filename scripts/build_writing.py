@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""Rebuild writing.html from the Interesting Data Substack feed.
+"""Rebuild writing.html and the home page's latest post from the Substack feed.
 
 Substack's RSS feed only carries the most recent 20 posts, so every post we
 see is kept in data/substack-posts.json and merged with each new fetch. That
 way older posts stay on the page after they drop out of the feed.
+
+Substack's Cloudflare check blocks cloud servers such as GitHub Actions, so
+this runs on Leo's Mac every 6 hours via scripts/update-site.sh.
 
 Run from anywhere:  python3 scripts/build_writing.py
 Uses only the Python standard library.
@@ -12,61 +15,33 @@ Uses only the Python standard library.
 import html
 import json
 import re
-import time
-import urllib.error
-import urllib.parse
+import sys
 import urllib.request
 import xml.etree.ElementTree as ET
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 FEED_URL = "https://leobenedictus.substack.com/feed"
-SOURCES = [
-    FEED_URL,
-    "https://api.allorigins.win/raw?url=" + urllib.parse.quote(FEED_URL, safe=""),
-]
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-                  "AppleWebKit/537.36 (KHTML, like Gecko) "
-                  "Chrome/141.0.0.0 Safari/537.36",
-    "Accept": "application/rss+xml, application/xml;q=0.9, */*;q=0.8",
-    "Accept-Language": "en-GB,en;q=0.9",
-}
 CONTENT_NS = "{http://purl.org/rss/1.0/modules/content/}encoded"
 
 ROOT = Path(__file__).resolve().parent.parent
 ARCHIVE = ROOT / "data" / "substack-posts.json"
 TEMPLATE = ROOT / "scripts" / "writing-template.html"
 OUTPUT = ROOT / "writing.html"
+HOME = ROOT / "index.html"
+LATEST_POST = re.compile(
+    r"(<!-- latest-post: [^>]*-->\n).*?([ \t]*<!-- /latest-post -->)", re.S)
 
 MONTHS = ["January", "February", "March", "April", "May", "June", "July",
           "August", "September", "October", "November", "December"]
 
 
 def fetch_feed():
-    """Return the feed's posts, trying Substack directly and then a proxy.
-
-    Substack sometimes refuses requests from cloud servers such as GitHub's,
-    so we look like a browser, retry, and fall back to a public proxy.
-    """
-    errors = []
-    for url in SOURCES:
-        for attempt in range(3):
-            try:
-                req = urllib.request.Request(url, headers=HEADERS)
-                with urllib.request.urlopen(req, timeout=30) as resp:
-                    posts = parse_feed(resp.read())
-                if posts:
-                    return posts
-                errors.append(f"{url}: no posts in response")
-            except urllib.error.HTTPError as exc:
-                body = exc.read(200).decode("utf-8", "replace")
-                errors.append(f"{url}: HTTP {exc.code} {body!r}")
-            except (OSError, ET.ParseError) as exc:
-                errors.append(f"{url}: {exc}")
-            time.sleep(5 * (attempt + 1))
-    print("\n".join(errors))
-    return []
+    req = urllib.request.Request(FEED_URL, headers={
+        "User-Agent": "Mozilla/5.0 (compatible; leobenedictus.co.uk site build)",
+    })
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        return resp.read()
 
 
 def plain_text(fragment):
@@ -133,6 +108,17 @@ def render_post(post):
     )
 
 
+def render_latest(post):
+    e = html.escape
+    return (
+        '        <div class="latest-post">\n'
+        '            <p class="latest-post-label">Latest post</p>\n'
+        f'            <a class="latest-post-title" href="{e(post["link"])}" target="_blank">{e(post["title"])}</a>\n'
+        f'            <p class="latest-post-excerpt">{e(post["summary"])}</p>\n'
+        '        </div>'
+    )
+
+
 def write_if_changed(path, text):
     if path.exists() and path.read_text(encoding="utf-8") == text:
         return False
@@ -142,21 +128,23 @@ def write_if_changed(path, text):
 
 
 def main():
-    fresh = fetch_feed()
+    fresh = parse_feed(fetch_feed())
     if not fresh:
-        # A warning rather than a failure, so a Substack outage doesn't send
-        # an email every six hours. It shows on the run's page in Actions.
-        print("::warning::Couldn't read the Substack feed; "
-              "writing.html left unchanged.")
-        return
+        sys.exit("No posts found in the feed; leaving the site untouched.")
 
     posts = merge(load_archive(), fresh)
     page = TEMPLATE.read_text(encoding="utf-8").replace(
         "{{POSTS}}", "\n".join(render_post(p) for p in posts))
+    home = HOME.read_text(encoding="utf-8")
+    if not LATEST_POST.search(home):
+        sys.exit("Couldn't find the latest-post markers in index.html.")
+    home = LATEST_POST.sub(
+        lambda m: m.group(1) + render_latest(posts[0]) + "\n" + m.group(2), home)
 
     changed = write_if_changed(
         ARCHIVE, json.dumps(posts, indent=2, ensure_ascii=False) + "\n")
     changed = write_if_changed(OUTPUT, page) or changed
+    changed = write_if_changed(HOME, home) or changed
     print(f"{len(posts)} posts ({len(fresh)} in feed); "
           f"{'updated' if changed else 'no changes'}.")
 
