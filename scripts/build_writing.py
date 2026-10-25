@@ -12,13 +12,26 @@ Uses only the Python standard library.
 import html
 import json
 import re
-import sys
+import time
+import urllib.error
+import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 FEED_URL = "https://leobenedictus.substack.com/feed"
+SOURCES = [
+    FEED_URL,
+    "https://api.allorigins.win/raw?url=" + urllib.parse.quote(FEED_URL, safe=""),
+]
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                  "AppleWebKit/537.36 (KHTML, like Gecko) "
+                  "Chrome/141.0.0.0 Safari/537.36",
+    "Accept": "application/rss+xml, application/xml;q=0.9, */*;q=0.8",
+    "Accept-Language": "en-GB,en;q=0.9",
+}
 CONTENT_NS = "{http://purl.org/rss/1.0/modules/content/}encoded"
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -31,11 +44,29 @@ MONTHS = ["January", "February", "March", "April", "May", "June", "July",
 
 
 def fetch_feed():
-    req = urllib.request.Request(FEED_URL, headers={
-        "User-Agent": "Mozilla/5.0 (compatible; leobenedictus.co.uk site build)",
-    })
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        return resp.read()
+    """Return the feed's posts, trying Substack directly and then a proxy.
+
+    Substack sometimes refuses requests from cloud servers such as GitHub's,
+    so we look like a browser, retry, and fall back to a public proxy.
+    """
+    errors = []
+    for url in SOURCES:
+        for attempt in range(3):
+            try:
+                req = urllib.request.Request(url, headers=HEADERS)
+                with urllib.request.urlopen(req, timeout=30) as resp:
+                    posts = parse_feed(resp.read())
+                if posts:
+                    return posts
+                errors.append(f"{url}: no posts in response")
+            except urllib.error.HTTPError as exc:
+                body = exc.read(200).decode("utf-8", "replace")
+                errors.append(f"{url}: HTTP {exc.code} {body!r}")
+            except (OSError, ET.ParseError) as exc:
+                errors.append(f"{url}: {exc}")
+            time.sleep(5 * (attempt + 1))
+    print("\n".join(errors))
+    return []
 
 
 def plain_text(fragment):
@@ -111,9 +142,13 @@ def write_if_changed(path, text):
 
 
 def main():
-    fresh = parse_feed(fetch_feed())
+    fresh = fetch_feed()
     if not fresh:
-        sys.exit("No posts found in the feed; leaving writing.html untouched.")
+        # A warning rather than a failure, so a Substack outage doesn't send
+        # an email every six hours. It shows on the run's page in Actions.
+        print("::warning::Couldn't read the Substack feed; "
+              "writing.html left unchanged.")
+        return
 
     posts = merge(load_archive(), fresh)
     page = TEMPLATE.read_text(encoding="utf-8").replace(
