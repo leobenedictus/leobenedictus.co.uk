@@ -6,7 +6,7 @@ see is kept in data/substack-posts.json and merged with each new fetch. That
 way older posts stay on the page after they drop out of the feed.
 
 Substack's Cloudflare check blocks cloud servers such as GitHub Actions, so
-this runs on Leo's Mac every 6 hours via scripts/update-site.sh.
+this runs on Leo's Mac daily at 06:20 via scripts/update-site.sh.
 
 Run from anywhere:  python3 scripts/build_writing.py
 Uses only the Python standard library.

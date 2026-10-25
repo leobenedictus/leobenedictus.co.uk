@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Mac: rebuild the Writing page and home page latest post from Substack
-     every 6 hours, and push to GitHub if anything changed. Runs on next wake
+     at 06:20 daily, and push to GitHub if anything changed. Runs on next wake
      if asleep. Uses its own clone so it never touches the Desktop copy:
        git clone https://github.com/leobenedictus/leobenedictus.co.uk.git ~/leobenedictus.co.uk-updater
        cp scripts/uk.co.leobenedictus.update-site.plist ~/Library/LaunchAgents/
@@ -16,8 +16,8 @@
     <string>/bin/bash</string>
     <string>/Users/leobenedictus/leobenedictus.co.uk-updater/scripts/update-site.sh</string>
   </array>
-  <key>StartInterval</key><integer>21600</integer>
-  <key>RunAtLoad</key><true/>
+  <key>StartCalendarInterval</key>
+  <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>20</integer></dict>
   <key>StandardOutPath</key><string>/Users/leobenedictus/Library/Logs/leobenedictus-update-site.log</string>
   <key>StandardErrorPath</key><string>/Users/leobenedictus/Library/Logs/leobenedictus-update-site.log</string>
 </dict>

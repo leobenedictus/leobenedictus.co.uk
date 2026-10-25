@@ -1,6 +1,6 @@
 #!/bin/bash
 # Pull the site, rebuild the Writing page and home page latest post from the
-# Substack feed, and push if anything changed. Run by launchd every 6 hours
+# Substack feed, and push if anything changed. Run by launchd daily at 06:20
 # from a separate clone (~/leobenedictus.co.uk-updater), never the copy Leo
 # edits, so it can't commit half-finished work.
 
